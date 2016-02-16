@@ -54,10 +54,28 @@ Benefits of functions
 #### Function Container
 
 ```js
-function multiply(){
+function multiply(num1,num2){
 
 }
-```
+function nameOfFunction (parameter1, parameter2){
+
+}
+or you could use:
+var nameOfFunction = function(parameterX,parameterY){
+
+}
+
+/*these are similar but it's the logic you are using that will determine which you use.*/
+var x = myFunction(4, 3);        
+// Function is called, return value will end up in x
+--------------------------------------------
+function myFunction(a, b) {
+    return a * b;   }             
+    // Function returns the product of a and b
+
+  THEN YOU CALL THE FUNCTION LIKE
+  myFunction (10, 20); this would print out 20.
+------------------------------------------------------
 
 #### Input ("Arguments" or "Parameters")
 
@@ -75,7 +93,7 @@ function multiply( num1, num2 ){
   return num1 * num2;
 }
 ```
-* Output: return value.
+* Output: return value. (use "return" when you want to store it.)
 * Side Effects: e.g., print statements.
 
 **Q**. Does a function need an input, output and/or side effects to work?
@@ -85,7 +103,7 @@ function multiply( num1, num2 ){
 
 #### Calling and Referencing a Function
 
-We've defined a function. Now we need to call it...
+We have defined a function. Now we need to call it...
 
 **Q. Now we that we have stored that function in memory, how to do we use it?**
 
@@ -140,6 +158,7 @@ multiply( 3, 5 );
 var multiply = function( num1, num2 ){           // NOTE: This is a function expression
   return num1 * num2;
 }
+// This code will run and get an error because we don't have "multiply" defined as a function. We are calling a variable that hasnt been defined.
 ```
 
 Surely the same thing will happen when we run the below code...
@@ -189,9 +208,10 @@ What is alerted in each case? Write down your answer before running the code.
 
 1.
 ```js
-function foo(){
-  function bar() {
-      return 3;
+function foo(){       //function called foo will have the bar
+  function bar() {    // variable rewritten by the function "bar"()
+}                    // return "8" - we've basically changed the
+      return 3;     //variable
   }
   return bar();
   function bar() {
@@ -202,11 +222,11 @@ alert(foo());
 ```
 2.
 ```js
-function foo(){
-  var bar = function() {
-      return 3;
-  };
-  return bar();
+function foo(){                    // this one outputs "3"
+  var bar = function() {           // because the "return bar()"
+      return 3;                    // exits the function.
+  };                               // and next one just renames
+  return bar();                    // bar.
   var bar = function() {
       return 8;
   };
@@ -216,7 +236,7 @@ alert(foo());
 
 3.
 ```js
-function foo(){
+function foo(){                   //error. Bar has not been defined. 
   return bar();
   var bar = function() {
       return 3;
